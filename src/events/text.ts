@@ -1,6 +1,7 @@
 import { MessageType, handleChat } from "../handlers/chat";
 import { EventHandler } from "../handlers/events";
 import { Text } from "../packets/text";
+import { setChatMode } from "../utils/chat";
 import { stripString } from "../utils/string";
 
 export default <EventHandler<Text>>{
@@ -12,6 +13,8 @@ export default <EventHandler<Text>>{
     const stripped = stripString(packet.message);
 
     console.log(stripped);
+
+    if (stripped === "Welcome to NetherGames!") setChatMode(instance, "ranked");
 
     if (stripped.startsWith("RANKED »")) type = "ranked";
     else if (

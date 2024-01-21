@@ -1,6 +1,6 @@
 import { Instance } from "../instance";
 import { readdir } from "fs/promises";
-import { executeCommand, whisper } from "../utils/chat";
+import { sendChatMessage, whisper } from "../utils/chat";
 import { MessageType } from "./chat";
 import { EmbedBuilder } from "discord.js";
 
@@ -59,7 +59,7 @@ function sendMessage(
   message: string
 ) {
   if (messageType === "ranked") {
-    executeCommand(instance, `/chat ranked ${message}`);
+    sendChatMessage(instance, message);
   } else if (messageType === "whisper") {
     whisper(instance, author, message);
   }

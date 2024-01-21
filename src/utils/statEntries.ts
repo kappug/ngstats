@@ -49,7 +49,7 @@ export async function generateStatEntries(player: Player) {
       default: entries,
     }: {
       default: (player: Player) => StatEntry[];
-    } = await import(`./entries/${gamemode}`);
+    } = await import(`./entries/${gamemode}.js`);
 
     statEntries[gamemode] = entries(player);
   }
