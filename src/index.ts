@@ -39,6 +39,12 @@ async function main() {
     registerEvents(instance);
     registerCommands(instance);
   });
+
+  client.on("disconnect", ({ message }: { message: string }) => {
+    console.log(`Disconnected: ${message}\nReconnecting...`);
+
+    main();
+  });
 }
 
 config();
