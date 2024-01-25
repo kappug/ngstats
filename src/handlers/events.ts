@@ -1,6 +1,6 @@
 import { Instance } from "../instance";
 import { readdir } from "fs/promises";
-import { snakeTocamel } from "../utils/string";
+import { snakeToCamel } from "../utils/string";
 
 export interface EventHandler<T = any> {
   event: string;
@@ -19,7 +19,7 @@ export async function registerEvents(instance: Instance) {
     );
 
     instance.client.on(event.event, (data) => {
-      const camelData = snakeTocamel(data);
+      const camelData = snakeToCamel(data);
 
       event.execute(instance, camelData);
     });

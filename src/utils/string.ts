@@ -1,4 +1,4 @@
-export function snakeTocamel<T>(thing: any): T {
+export function snakeToCamel<T>(thing: any): T {
   if (typeof thing === "string")
     return thing.replace(/(_\w)/g, (m) => m[1]!.toUpperCase()) as any;
 
@@ -6,7 +6,7 @@ export function snakeTocamel<T>(thing: any): T {
     let newArray: any[] = [];
 
     for (let index in thing) {
-      newArray.push(snakeTocamel(thing[index]));
+      newArray.push(snakeToCamel(thing[index]));
     }
 
     return newArray as any;
@@ -16,8 +16,8 @@ export function snakeTocamel<T>(thing: any): T {
     let newObject: any = {};
 
     for (const key in thing) {
-      newObject[snakeTocamel(key) as any] =
-        typeof thing[key] === "object" ? snakeTocamel(thing[key]) : thing[key];
+      newObject[snakeToCamel(key) as any] =
+        typeof thing[key] === "object" ? snakeToCamel(thing[key]) : thing[key];
     }
 
     return newObject as any;
