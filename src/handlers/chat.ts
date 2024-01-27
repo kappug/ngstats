@@ -30,7 +30,7 @@ export async function handleChat(
 		let username: string, content: string;
 
 		if (message.startsWith("WHISPER »")) {
-			let [_, username_, content_] = message.match(/^WHISPER » (.+?): (.+?)/)!;
+			let [_, username_, content_] = message.match(/^WHISPER » (.+?): (.+)/)!;
 
 			username_ = username_?.replace(" whispered to you", "");
 
@@ -38,7 +38,7 @@ export async function handleChat(
 			content = content_!;
 		} else {
 			const [_, username_, content_] = message.match(
-				/^(.+?) whispered to you: (.+?)/
+				/^(.+?) whispered to you: (.+)/
 			)!;
 
 			username = username_!;
