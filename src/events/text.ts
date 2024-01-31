@@ -5,26 +5,26 @@ import { setChatMode } from "../utils/chat";
 import { stripString } from "../utils/string";
 
 export default <EventHandler<Text>>{
-  event: "text",
-  execute: (instance, packet) => {
-    if (!packet.message) return;
+	event: "text",
+	execute: (instance, packet) => {
+		if (!packet.message) return;
 
-    let type: MessageType;
-    const stripped = stripString(packet.message);
+		let type: MessageType;
+		const stripped = stripString(packet.message);
 
-    console.log(stripped);
+		console.log(stripped);
 
-    if (stripped === "Welcome to NetherGames!") setChatMode(instance, "ranked");
+		if (stripped === "Welcome to NetherGames!") setChatMode(instance, "ranked");
 
-    if (stripped.startsWith("RANKED »")) type = "ranked";
-    else if (
-      /(.+) whispered to you: (.+)$/.test(stripped) ||
-      (stripped.startsWith("WHISPER »") &&
-        !stripped.startsWith("WHISPER » You whispered to"))
-    )
-      type = "whisper";
-    else return;
+		if (stripped.startsWith("RANKED »")) type = "ranked";
+		else if (
+			/(.+) whispered to you: (.+)$/.test(stripped) ||
+			(stripped.startsWith("WHISPER »") &&
+				!stripped.startsWith("WHISPER » You whispered to"))
+		)
+			type = "whisper";
+		else return;
 
-    handleChat(instance, type, stripped);
-  },
+		handleChat(instance, type, stripped);
+	},
 };
