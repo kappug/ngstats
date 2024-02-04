@@ -1,7 +1,6 @@
 import { Instance } from "../instance";
 import { readdir } from "fs/promises";
-import { sendChatMessage, whisper } from "../utils/chat";
-import { MessageType } from "./chat";
+import { whisper } from "../utils/chat";
 import { EmbedBuilder } from "discord.js";
 
 export type ArgumentType = "string" | "number";
@@ -52,23 +51,9 @@ export async function registerCommands(instance: Instance) {
   console.log(`Commands registered (${files.length})`);
 }
 
-function sendMessage(
-  instance: Instance,
-  author: string,
-  messageType: MessageType,
-  message: string
-) {
-  if (messageType === "ranked") {
-    sendChatMessage(instance, message);
-  } else if (messageType === "whisper") {
-    whisper(instance, author, message);
-  }
-}
-
 export async function handleCommand(
   instance: Instance,
   author: string,
-  messageType: MessageType,
   message: string
 ) {
   if (process.env.LOGS_WEBHOOK)
@@ -76,7 +61,7 @@ export async function handleCommand(
       username: "Logs",
       embeds: [
         new EmbedBuilder()
-          .setTitle(`Command (${messageType})`)
+          .setTitle(`Command`)
           .setDescription(`**${author}**\n${message}`),
       ],
     });
@@ -88,16 +73,15 @@ export async function handleCommand(
   );
 
   if (!command)
-    return sendMessage(
+    return whisper(
       instance,
       author,
-      messageType,
       "✗ Unknown command. Use 'help' for a list of commands."
     );
 
   const { valid, error } = validateArguments(command, args);
 
-  if (!valid) return sendMessage(instance, author, messageType, `✗ ${error}`);
+  if (!valid) return whisper(instance, author, `✗ ${error}`);
 
   for (const arg of command.arguments) {
     if (arg.type === "string" && arg.stringInfinite) {
@@ -111,7 +95,7 @@ export async function handleCommand(
   const returnMessage = await command.execute(instance, author, args);
   if (!returnMessage) return;
 
-  sendMessage(instance, author, messageType, returnMessage);
+  whisper(instance, author, returnMessage);
 }
 
 export function validateArguments(
