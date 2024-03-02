@@ -21,7 +21,7 @@ export function generateEntry(symbol: string, name: string, value: string) {
 export function generateNumericEntry(
   symbol: string,
   name: string,
-  value: number
+  value: number,
 ) {
   return generateEntry(symbol, name, value.toLocaleString());
 }

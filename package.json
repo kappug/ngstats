@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc-esm",
     "start": "set NODE_ENV=production&& node ./dist/index.js",
-    "dev": "set NODE_ENV=development&& tsx ./src/index.ts"
+    "dev": "set NODE_ENV=development&& tsx ./src/index.ts",
+    "format": "prettier --config .prettierrc src/**/*.ts --write"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "@digitak/tsc-esm": "^3.1.4",
     "@sindresorhus/tsconfig": "^5.0.0",
     "@types/node": "^20.11.0",
+    "prettier": "^3.2.5",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }

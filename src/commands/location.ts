@@ -7,7 +7,7 @@ export default <Command>{
   execute: async (instance) => {
     const lobby = instance.session.lobby!;
     const player = await instance.apiClient.players.retrieve(
-      process.env.BOT_GAMERTAG
+      process.env.BOT_GAMERTAG,
     );
 
     return `⁎ The bot is currently in lobby #${lobby} (${player?.lastServerParsed.region}).`;

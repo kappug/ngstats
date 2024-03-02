@@ -13,7 +13,7 @@ export default <Command<[string | null]>>{
   execute: async (instance, _author, args) => {
     if (args[0]) {
       const command = instance.commands.find((command) =>
-        command.aliases.includes(args[0]!.toLowerCase())
+        command.aliases.includes(args[0]!.toLowerCase()),
       );
 
       if (!command) return "Unknown command.";
@@ -26,10 +26,10 @@ export default <Command<[string | null]>>{
             (argument.stringOptions || []).length! > 0
               ? `: ${argument.stringOptions?.join("/")}`
               : argument.type === "number" &&
-                argument.numberMinimum &&
-                argument.numberMaximum
-              ? `: ${argument.numberMinimum}..${argument.numberMaximum}`
-              : "";
+                  argument.numberMinimum &&
+                  argument.numberMaximum
+                ? `: ${argument.numberMinimum}..${argument.numberMaximum}`
+                : "";
 
           return `<${argument.name}${required}${suffix}>`;
         })

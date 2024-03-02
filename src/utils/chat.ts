@@ -13,7 +13,7 @@ export function sendChatMessage(instance: Instance, message: string) {
       xuid: "",
       platformChatId: "",
       message,
-    })
+    }),
   );
 }
 
@@ -29,7 +29,7 @@ export function executeCommand(instance: Instance, command: string) {
         playerEntityId: undefined,
       },
       internal: false,
-    })
+    }),
   );
 }
 
