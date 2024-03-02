@@ -7,7 +7,6 @@ ngstats is a messageable bot that allows you to check your NetherGames statistic
 - It's a lot easier to message a bot in-game than open a browser and visit the portal or use a Discord bot.
 - The built-in `/stats` command provides little information, and lacks statistics about specific gamemodes, leaderboards, and guilds.
 - Mobile players aren't able to tab out of their game to visit an external app (to check their stats) without disconnecting.
-- Don't have a rank, but want to view ranked chat? This bot allows you to do that, via Discord webhooks.
 
 # Running
 
@@ -31,12 +30,11 @@ VERSION=1.20.40
 NG_SERVER_ADDRESS=play.nethergames.org
 NG_SERVER_PORT=19132
 NG_API_KEY=...
-RANKED_CHAT_WEBHOOK=https://discord.com/api/webhooks/.../...
 LOGS_WEBHOOK=https://discord.com/api/webhooks/.../...
 TRUSTED_GAMERTAGS=Player One,Player Two,...
 ```
 
-All of these fields are optional except for `BOT_GAMERTAG`, the bot's Gamertag, and `VERSION`, the Minecraft version the bot should connect with. If the `RANKED_CHAT_WEBHOOK` field is empty, the bot will assume that it does not have a rank. If you want to want to set all these variables manually instead of creating a `.env` file, that's fine too.
+All of these fields are optional except for `BOT_GAMERTAG`, the bot's Gamertag, and `VERSION`, the Minecraft version the bot should connect with. If you want to want to set all these variables manually instead of creating a `.env` file, that's fine too.
 
 Finally, run:
 

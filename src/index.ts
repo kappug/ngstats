@@ -22,10 +22,7 @@ async function main() {
 	const instance: Instance = {
 		client,
 		apiClient,
-		rankedChatWebhookClient: new WebhookClient({
-			url: process.env.RANKED_CHAT_WEBHOOK ?? "",
-		}),
-		logsWebhookClient: new WebhookClient({
+		webhookClient: new WebhookClient({
 			url: process.env.LOGS_WEBHOOK ?? "",
 		}),
 		commands: [],
